@@ -6,6 +6,10 @@ public class FloatSetting extends ConfigSetting<Float> {
     public FloatSetting() {
     }
 
+    public FloatSetting(String key) {
+        this(key, null);
+    }
+
     public FloatSetting(String key, Float defaultValue) {
         super(key, defaultValue);
     }

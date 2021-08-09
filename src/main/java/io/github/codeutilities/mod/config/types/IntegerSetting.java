@@ -6,6 +6,10 @@ public class IntegerSetting extends ConfigSetting<Integer> {
     public IntegerSetting() {
     }
 
+    public IntegerSetting(String key) {
+        this(key, null);
+    }
+
     public IntegerSetting(String key, Integer defaultValue) {
         super(key, defaultValue);
     }

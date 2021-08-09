@@ -6,6 +6,10 @@ public class DoubleSetting extends ConfigSetting<Double> {
     public DoubleSetting() {
     }
 
+    public DoubleSetting(String key) {
+        this(key, null);
+    }
+
     public DoubleSetting(String key, Double defaultValue) {
         super(key, defaultValue);
     }

@@ -6,6 +6,10 @@ public class LongSetting extends ConfigSetting<Long> {
     public LongSetting() {
     }
 
+    public LongSetting(String key) {
+        this(key, null);
+    }
+
     public LongSetting(String key, Long defaultValue) {
         super(key, defaultValue);
     }

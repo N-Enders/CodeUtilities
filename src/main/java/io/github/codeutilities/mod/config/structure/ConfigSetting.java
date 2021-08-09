@@ -1,6 +1,6 @@
 package io.github.codeutilities.mod.config.structure;
 
-import io.github.codeutilities.mod.config.types.DropdownSetting;
+import io.github.codeutilities.mod.config.types.*;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 
@@ -35,6 +35,11 @@ public class ConfigSetting<Value> implements IRawTranslation<ConfigSetting<Value
     public void setDescription(String description) {
         this.description = description;
         throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public ConfigSetting<Value> setDefaultValue(Value defaultValue) {
+        this.defaultValue = defaultValue;
+        return this;
     }
 
     public Optional<String> getDescription() {
@@ -138,6 +143,20 @@ public class ConfigSetting<Value> implements IRawTranslation<ConfigSetting<Value
 
     public Value getDefaultValue() {
         return defaultValue;
+    }
+
+    public static ConfigSetting<?> of(String setting, String key) {
+        switch (setting) {
+            case "string": return new StringSetting(key);
+            case "boolean": return new BooleanSetting(key);
+            case "integer": return new IntegerSetting(key);
+            case "double": return new DoubleSetting(key);
+            case "float": return new FloatSetting(key);
+            case "long": return new LongSetting(key);
+            case "sound": return new SoundSetting(key);
+            case "description": return new TextDescription(key);
+        }
+        throw new IllegalArgumentException();
     }
 
 }

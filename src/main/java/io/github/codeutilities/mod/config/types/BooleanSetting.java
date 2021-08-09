@@ -8,6 +8,10 @@ public class BooleanSetting extends ConfigSetting<Boolean> {
     public BooleanSetting() {
     }
 
+    public BooleanSetting(String key) {
+        this(key, null);
+    }
+
     public BooleanSetting(String key, Boolean defaultValue) {
         super(key, defaultValue);
     }
