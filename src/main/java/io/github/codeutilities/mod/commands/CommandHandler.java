@@ -17,6 +17,7 @@ import io.github.codeutilities.mod.commands.impl.other.CalcCommand;
 import io.github.codeutilities.mod.commands.impl.other.CodeUtilitiesCommand;
 import io.github.codeutilities.mod.commands.impl.other.ConfigCommand;
 import io.github.codeutilities.mod.commands.impl.other.DebugCommand;
+import io.github.codeutilities.mod.commands.impl.other.ModulesCommand;
 import io.github.codeutilities.mod.commands.impl.other.NBSCommand;
 import io.github.codeutilities.mod.commands.impl.other.NBSSearchCommand;
 import io.github.codeutilities.mod.commands.impl.other.NodeCommand;
@@ -60,7 +61,8 @@ public class CommandHandler implements ILoader {
             new TitleCommand(),
             new SubTitleCommand(),
             new ActionbarCommand(),
-            new CalcCommand()
+            new CalcCommand(),
+            new ModulesCommand()
         );
 
         if (Config.getBoolean("dfCommands")) {
