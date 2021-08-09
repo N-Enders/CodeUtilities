@@ -37,6 +37,7 @@ import io.github.codeutilities.mod.features.discordrpc.DFDiscordRPC;
 import io.github.codeutilities.mod.features.modules.Module;
 import io.github.codeutilities.mod.features.modules.actions.Action;
 import io.github.codeutilities.mod.features.modules.triggers.Trigger;
+import io.github.codeutilities.mod.features.newmodules.ModuleLoader;
 import io.github.codeutilities.mod.features.social.cosmetics.CosmeticHandler;
 import io.github.codeutilities.mod.features.social.tab.Client;
 import io.github.codeutilities.sys.file.FileUtil;
@@ -125,14 +126,12 @@ public class CodeUtilities implements ModInitializer {
             CLIENT_LANG = m.group(0).replaceAll("^\nlang:", "");
         }
 
-        // Load modules
-        Action.cacheActions();
-        Trigger.cacheTriggers();
-        Module.loadModules();
-
         // Get player name
         PLAYER_NAME = MC.getSession().getUsername();
         PLAYER_UUID = MC.getSession().getUuid();
+
+        // Initialize modules
+        ModuleLoader.getInstance().loadModules();
 
         // Initialize.
         CodeInitializer initializer = new CodeInitializer();
