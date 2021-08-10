@@ -26,7 +26,7 @@ public class TaskHandler {
     }
 
     public void register(Task task) {
-        TASKS.put(task.getName(), task);
+        TASKS.put(task.getFullName(), task);
     }
 
     public Task getTask(String name) {

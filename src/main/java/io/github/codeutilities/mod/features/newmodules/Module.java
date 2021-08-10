@@ -6,9 +6,13 @@ import com.google.gson.JsonObject;
 import io.github.codeutilities.mod.config.structure.ConfigSetting;
 import io.github.codeutilities.mod.features.newmodules.task.Task;
 import io.github.codeutilities.mod.features.newmodules.task.TaskHandler;
+import io.github.codeutilities.mod.features.newmodules.trigger.Trigger;
+import io.github.codeutilities.mod.features.newmodules.trigger.TriggerHandler;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Module {
 
@@ -24,11 +28,15 @@ public class Module {
     private final ConfigOption[] config;
 
     // Translations
+    private final JsonObject rawTranslations;
 
     // Triggers
+    private final JsonArray rawTriggers;
+    private Trigger[] triggers;
 
     // Tasks
-    private final Task[] tasks;
+    private final JsonArray rawTasks;
+    private Task[] tasks;
 
     // Register module
     public Module(JsonObject json) {
@@ -50,15 +58,28 @@ public class Module {
         this.config = ConfigOption.of(config);
 
         // Translations
-
+        this.rawTranslations = translations;
 
         // Triggers
-
+        this.rawTriggers = triggers;
 
         // Tasks
-        this.tasks = Task.of(tasks);
-        TaskHandler.getInstance().register(this.tasks);
+        this.rawTasks = tasks;
 
+        // Register
+        register();
+    }
+
+    public void register() {
+        // Register translations TODO
+
+        // Register tasks
+        this.tasks = Task.of(rawTasks, this);
+        TaskHandler.getInstance().register(tasks);
+
+        // Register triggers
+        this.triggers = Trigger.of(this, rawTriggers);
+        TriggerHandler.register(triggers);
     }
 
     // General getters -------------------------------
@@ -77,6 +98,10 @@ public class Module {
         return author;
     }
 
+    public String getFullId() {
+        return getAuthor() + "." + getId();
+    }
+
     public String getVersion() {
         return version;
     }
@@ -89,16 +114,35 @@ public class Module {
 
     // Translation getters -----------------------------
 
-
+    public JsonObject getRawTranslations() {
+        return rawTranslations;
+    }
 
     // Trigger getters ---------------------------------
 
+    public JsonArray getRawTriggers() {
+        return rawTriggers;
+    }
 
+    public Trigger[] getTriggers() {
+        return triggers;
+    }
 
     // Task getters -------------------------------------
 
+    public JsonArray getRawTasks() {
+        return rawTasks;
+    }
+
     public Task[] getTasks() {
         return tasks;
+    }
+
+    public Task getTask(String name) {
+        return Arrays.stream(tasks)
+                .filter(e -> e.getName().equals(name))
+                .collect(Collectors.toList())
+                .get(0);
     }
 
     // --------------------------------------------------
