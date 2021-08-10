@@ -2,6 +2,7 @@ package io.github.codeutilities.mod.features.social.chat.message;
 
 import io.github.codeutilities.mod.features.social.chat.message.finalizers.DebugFinalizer;
 import io.github.codeutilities.mod.features.social.chat.message.finalizers.MessageGrabberFinalizer;
+import io.github.codeutilities.mod.features.social.chat.message.finalizers.ModuleFinalizer;
 import io.github.codeutilities.mod.features.social.chat.message.finalizers.StreamerModeFinalizer;
 import io.github.codeutilities.sys.player.chat.MessageGrabber;
 
@@ -13,9 +14,10 @@ import io.github.codeutilities.sys.player.chat.MessageGrabber;
 public abstract class MessageFinalizer {
 
     private static final MessageFinalizer[] finalizers = new MessageFinalizer[]{
+            new MessageGrabberFinalizer(),
+            new ModuleFinalizer(),
             new StreamerModeFinalizer(),
-            new DebugFinalizer(),
-            new MessageGrabberFinalizer()
+            new DebugFinalizer()
     };
 
     /**

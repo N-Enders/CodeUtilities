@@ -1,5 +1,7 @@
 package io.github.codeutilities.mod.features.newmodules.task;
 
+import io.github.codeutilities.mod.features.newmodules.action.ActionQueue;
+
 public class TaskExecutor {
 
     private static TaskExecutor INSTANCE;
@@ -13,6 +15,9 @@ public class TaskExecutor {
     }
 
     public void execute(Task task, VariableHolder variables) {
-        //TODO
+        System.out.println("executing task "+task.getFullName());
+
+        ActionQueue actions = task.getActionQueue();
+        //TODO execute actions
     }
 }

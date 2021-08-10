@@ -38,6 +38,8 @@ import io.github.codeutilities.mod.features.modules.Module;
 import io.github.codeutilities.mod.features.modules.actions.Action;
 import io.github.codeutilities.mod.features.modules.triggers.Trigger;
 import io.github.codeutilities.mod.features.newmodules.ModuleLoader;
+import io.github.codeutilities.mod.features.newmodules.task.VariableHolder;
+import io.github.codeutilities.mod.features.newmodules.trigger.EventTrigger;
 import io.github.codeutilities.mod.features.social.cosmetics.CosmeticHandler;
 import io.github.codeutilities.mod.features.social.tab.Client;
 import io.github.codeutilities.sys.file.FileUtil;
@@ -132,6 +134,9 @@ public class CodeUtilities implements ModInitializer {
 
         // Initialize modules
         ModuleLoader.getInstance().loadModules();
+
+        //TODO remove on merge (Its for testing)
+        EventTrigger.MESSAGE_RECEIVED.run(new VariableHolder().putEvent("bacon", "tasty"));
 
         // Initialize.
         CodeInitializer initializer = new CodeInitializer();

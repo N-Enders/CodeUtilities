@@ -6,7 +6,7 @@ import java.util.*;
 
 public class TriggerHandler {
 
-    private static HashMap<EventTrigger, Set<Task>> TRIGGERS;
+    private static final HashMap<EventTrigger, Set<Task>> TRIGGERS = new HashMap<>();
 
     public static HashMap<EventTrigger, Set<Task>> getTriggers() {
         return TRIGGERS;

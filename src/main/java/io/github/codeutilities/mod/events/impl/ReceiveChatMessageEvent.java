@@ -3,6 +3,8 @@ package io.github.codeutilities.mod.events.impl;
 import io.github.codeutilities.mod.config.Config;
 import io.github.codeutilities.mod.events.interfaces.ChatEvents;
 import io.github.codeutilities.mod.features.modules.triggers.impl.MessageReceivedTrigger;
+import io.github.codeutilities.mod.features.newmodules.task.VariableHolder;
+import io.github.codeutilities.mod.features.newmodules.trigger.EventTrigger;
 import io.github.codeutilities.mod.features.social.chat.ConversationTimer;
 import io.github.codeutilities.mod.features.modules.triggers.Trigger;
 import io.github.codeutilities.mod.features.social.chat.message.Message;
@@ -42,9 +44,6 @@ public class ReceiveChatMessageEvent {
         if (mc.player == null) {
             return ActionResult.FAIL;
         }
-
-        // module trigger
-        Trigger.execute(new MessageReceivedTrigger());
 
         //PJoin command
         if (pjoin) {
