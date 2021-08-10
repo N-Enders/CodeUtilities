@@ -45,6 +45,11 @@ public class ModuleEditMenu extends LightweightGuiDescription implements IMenu {
         root.add(configb, 0,70,75,0);
         root.add(translationb, 80,70,75,0);
 
+        taskb.setOnClick(() -> {
+            ModuleTaskMenu menu = new ModuleTaskMenu(module);
+            menu.scheduleOpenGui(menu);
+        });
+
         setRootPanel(root);
         root.validate(this);
     }

@@ -19,7 +19,7 @@ public class MainModuleMenu extends LightweightGuiDescription implements IMenu {
     @Override
     public void open(String... args) throws CommandSyntaxException {
         WPlainPanel root = new WPlainPanel();
-        root.setSize(210, 240);
+        root.setSize(200, 240);
 
         HashMap<String, Module> modules = ModuleLoader.getInstance().getModules();
         WText label = new WText(new LiteralText("§nModule List - " + modules.size() + " loaded."));
@@ -45,15 +45,17 @@ public class MainModuleMenu extends LightweightGuiDescription implements IMenu {
 
             y += 25;
         }
-        WButton newModule = new WButton(new LiteralText("Create new module."));
+        WButton newModule = new WButton(new LiteralText("New module."));
+        WButton reloadModules = new WButton(new LiteralText("Reload modules."));
 
-        panel.add(newModule, 0, y, 200, 0);
+        root.add(newModule, 0, 220, 100, 0);
+        root.add(reloadModules, 100, 220, 100, 0);
 
         WScrollPanel spanel = new WScrollPanel(panel);
         spanel.setScrollingHorizontally(TriState.FALSE);
         spanel.setScrollingVertically(TriState.TRUE);
 
-        root.add(spanel, 0, 10, 210, 220);
+        root.add(spanel, 0, 10, 210 , 200);
         setRootPanel(root);
         root.validate(this);
     }
