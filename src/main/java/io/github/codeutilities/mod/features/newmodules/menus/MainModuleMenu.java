@@ -40,7 +40,7 @@ public class MainModuleMenu extends LightweightGuiDescription implements IMenu {
 
             editButton.setOnClick(() -> {
                ModuleEditMenu em = new ModuleEditMenu(m);
-               em.scheduleOpenGui(em);
+               em.scheduleOpenSubGui(em);
             });
 
             y += 25;

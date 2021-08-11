@@ -2,14 +2,14 @@ package io.github.codeutilities.mod.features.newmodules.menus;
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import io.github.codeutilities.mod.features.newmodules.Module;
+import io.github.codeutilities.sys.renderer.CLightweightGuiDescription;
 import io.github.codeutilities.sys.renderer.IMenu;
-import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.WButton;
 import io.github.cottonmc.cotton.gui.widget.WPlainPanel;
 import io.github.cottonmc.cotton.gui.widget.WTextField;
 import net.minecraft.text.LiteralText;
 
-public class ModuleEditMenu extends LightweightGuiDescription implements IMenu {
+public class ModuleEditMenu extends CLightweightGuiDescription implements IMenu {
 
     Module module;
 
@@ -29,9 +29,9 @@ public class ModuleEditMenu extends LightweightGuiDescription implements IMenu {
         authorf.setText(module.getAuthor());
         versionf.setText(module.getVersion());
 
-        root.add(idf, 0,0, 150, 30);
-        root.add(authorf, 0,25, 100, 30);
-        root.add(versionf, 100,25, 50, 30);
+        root.add(idf, 0, 0, 150, 30);
+        root.add(authorf, 0, 25, 100, 30);
+        root.add(versionf, 100, 25, 50, 30);
 
         //trigger, task, config, translation
 
@@ -40,17 +40,28 @@ public class ModuleEditMenu extends LightweightGuiDescription implements IMenu {
         WButton configb = new WButton(new LiteralText("Config"));
         WButton translationb = new WButton(new LiteralText("Translations"));
 
-        root.add(triggerb, 0,50,75,0);
-        root.add(taskb, 80,50,75,0);
-        root.add(configb, 0,70,75,0);
-        root.add(translationb, 80,70,75,0);
+        root.add(triggerb, 0, 50, 75, 0);
+        root.add(taskb, 80, 50, 75, 0);
+        root.add(configb, 0, 70, 75, 0);
+        root.add(translationb, 80, 70, 75, 0);
 
         taskb.setOnClick(() -> {
             ModuleTaskMenu menu = new ModuleTaskMenu(module);
-            menu.scheduleOpenGui(menu);
+            menu.scheduleOpenSubGui(menu);
+        });
+
+        configb.setOnClick(() -> {
+            ModuleConfigMenu menu = new ModuleConfigMenu(module);
+            menu.scheduleOpenSubGui(menu);
         });
 
         setRootPanel(root);
         root.validate(this);
+    }
+
+    @Override
+    public void onClose() {
+        MainModuleMenu menu = new MainModuleMenu();
+        menu.scheduleOpenGui(menu);
     }
 }
