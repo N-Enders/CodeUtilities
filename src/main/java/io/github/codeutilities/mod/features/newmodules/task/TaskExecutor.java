@@ -1,5 +1,7 @@
 package io.github.codeutilities.mod.features.newmodules.task;
 
+import io.github.codeutilities.mod.features.newmodules.action.Action;
+import io.github.codeutilities.mod.features.newmodules.action.ActionParameterHolder;
 import io.github.codeutilities.mod.features.newmodules.action.ActionQueue;
 
 public class TaskExecutor {
@@ -15,9 +17,17 @@ public class TaskExecutor {
     }
 
     public void execute(Task task, VariableHolder variables) {
-        System.out.println("executing task "+task.getFullName());
+        new Thread(() -> run(task, variables)).start();
+    }
+
+    public void run(Task task, VariableHolder variables) {
+        variables.putDefault();
 
         ActionQueue actions = task.getActionQueue();
-        //TODO execute actions
+
+        while (actions.whileNext()) {
+            Action action = actions.next();
+            action.run();
+        }
     }
 }
