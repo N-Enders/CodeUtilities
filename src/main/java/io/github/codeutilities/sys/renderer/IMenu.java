@@ -15,5 +15,14 @@ public interface IMenu {
         }
     }
 
+    default void scheduleOpenSubGui(CLightweightGuiDescription gui, String... args) {
+        try{
+            this.open(args);
+            MinecraftClient.getInstance().send(() -> MinecraftClient.getInstance().openScreen(new CCottonClientScreen(gui)));
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
     void open(String... args) throws CommandSyntaxException;
 }
