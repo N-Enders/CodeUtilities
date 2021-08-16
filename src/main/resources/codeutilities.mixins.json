@@ -19,6 +19,7 @@
     "render.MChestRenderer",
     "render.MDebugHUD",
     "render.MInGameHUD",
+    "render.MItemRenderer",
     "render.MMouse",
     "render.MSideChatHUD",
     "render.MSignBlockEntityRenderer",
