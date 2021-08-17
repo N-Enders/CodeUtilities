@@ -40,6 +40,7 @@ public class ScreenGroup extends ConfigGroup {
         code.register(new BooleanSetting("f3Tps", true));
         code.register(new BooleanSetting("variableScopeView", true));
         code.register(new BooleanSetting("highlightVarSyntax", true));
+        code.register(new BooleanSetting("itemTextures", true));
         this.register(code);
     }
 }

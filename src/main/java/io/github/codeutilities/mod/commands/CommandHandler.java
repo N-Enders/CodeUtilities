@@ -7,6 +7,7 @@ import io.github.codeutilities.mod.commands.impl.item.BreakableCommand;
 import io.github.codeutilities.mod.commands.impl.item.CodeVaultCommand;
 import io.github.codeutilities.mod.commands.impl.item.EditItemCommand;
 import io.github.codeutilities.mod.commands.impl.item.GiveCommand;
+import io.github.codeutilities.mod.commands.impl.item.GuiItemCommand;
 import io.github.codeutilities.mod.commands.impl.item.HeadsCommand;
 import io.github.codeutilities.mod.commands.impl.item.ItemdataCommand;
 import io.github.codeutilities.mod.commands.impl.item.RelativeLocCommand;
@@ -70,7 +71,8 @@ public class CommandHandler implements ILoader {
             new TitleCommand(),
             new SubTitleCommand(),
             new ActionbarCommand(),
-            new CalcCommand()
+            new CalcCommand(),
+            new GuiItemCommand()
         );
 
         if (Config.getBoolean("dfCommands")) {
