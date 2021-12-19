@@ -136,6 +136,7 @@ public class ImportFileCommand extends Command {
     private JsonObject textItem(String text,int slot) {
         JsonObject data = new JsonObject();
         data.addProperty("name",text);
+        ChatUtil.sendMessage("Testing Text: " + text,ChatType.INFO_BLUE);
         JsonObject item = new JsonObject();
         item.addProperty("id","txt");
         item.add("data",data);
